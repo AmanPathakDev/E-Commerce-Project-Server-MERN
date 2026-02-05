@@ -4,7 +4,7 @@ const sendOtp = async ({ email, subject, otp }) => {
   const transport = createTransport({
     host: "smtp-relay.brevo.com",
     port: 587,
-    secure: true, // IMPORTANT
+    secure: false, // FIXED
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
@@ -66,7 +66,7 @@ const sendOtp = async ({ email, subject, otp }) => {
 
   try {
     await transport.sendMail({
-      from: process.env.SMTP_USER,
+      from: process.env.Gmail,
       to: email,
       subject,
       html,

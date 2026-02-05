@@ -4,6 +4,7 @@ const sendOtp = async ({ email, subject, otp }) => {
   const transport = createTransport({
     host: "smtp.gmail.com",
     port: 465,
+    secure: true, // IMPORTANT
     auth: {
       user: process.env.Gmail,
       pass: process.env.Password,
@@ -56,12 +57,26 @@ const sendOtp = async ({ email, subject, otp }) => {
 </body>
 </html>`;
 
-  await transport.sendMail({
-    from: process.env.Gmail,
-    to: email,
-    subject,
-    html,
-  });
+  //   await transport.sendMail({
+  //     from: process.env.Gmail,
+  //     to: email,
+  //     subject,
+  //     html,
+  //   });
+
+  try {
+    await transport.sendMail({
+      from: process.env.Gmail,
+      to: email,
+      subject,
+      html,
+    });
+
+    console.log("OTP email sent successfully");
+  } catch (err) {
+    console.error("Email sending failed:", err);
+    throw err; // important so your API still returns error
+  }
 };
 
 export default sendOtp;

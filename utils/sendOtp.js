@@ -66,7 +66,7 @@ const sendOtp = async ({ email, subject, otp }) => {
 
   try {
     await transport.sendMail({
-      from: process.env.Gmail,
+      from: process.env.SMTP_USER,
       to: email,
       subject,
       html,

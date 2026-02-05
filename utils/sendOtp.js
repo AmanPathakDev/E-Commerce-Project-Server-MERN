@@ -3,7 +3,7 @@ import { createTransport } from "nodemailer";
 const sendOtp = async ({ email, subject, otp }) => {
   const transport = createTransport({
     host: "smtp-relay.brevo.com",
-    port: 587,
+    port: 2525,
     secure: false, // FIXED
     auth: {
       user: process.env.SMTP_USER,

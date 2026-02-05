@@ -8,6 +8,7 @@ import cartRoutes from "./routes/cart.js";
 import addressRouters from "./routes/address.js";
 import orderRouters from "./routes/order.js";
 import cors from "cors";
+import axios from "axios";
 
 dotenv.config();
 
@@ -18,6 +19,24 @@ cloudinary.config({
 });
 
 const app = express();
+
+// making render load fast
+const url = `https://e-commerce-project-server-mern.onrender.com`;
+const interval = 30000;
+
+function reloadWebsite() {
+  axios
+    .get(url)
+    .then((response) => {
+      console.log("website reloded");
+    })
+    .catch((error) => {
+      console.error(`Error : ${error.message}`);
+    });
+}
+
+setInterval(reloadWebsite, interval);
+///////////////
 
 app.use(express.json());
 app.use(cors());

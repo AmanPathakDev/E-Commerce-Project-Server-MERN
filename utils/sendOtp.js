@@ -3,7 +3,8 @@ import { createTransport } from "nodemailer";
 const sendOtp = async ({ email, subject, otp }) => {
   const transport = createTransport({
     host: "smtp.gmail.com",
-    port: 465,
+    // port: 465,
+    port: 587,
     secure: true, // IMPORTANT
     auth: {
       user: process.env.Gmail,

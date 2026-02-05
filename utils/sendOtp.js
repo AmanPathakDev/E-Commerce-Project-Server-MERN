@@ -2,13 +2,12 @@ import { createTransport } from "nodemailer";
 
 const sendOtp = async ({ email, subject, otp }) => {
   const transport = createTransport({
-    host: "smtp.gmail.com",
-    // port: 465,
+    host: "smtp-relay.brevo.com",
     port: 587,
     secure: true, // IMPORTANT
     auth: {
-      user: process.env.Gmail,
-      pass: process.env.Password,
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
     },
   });
 

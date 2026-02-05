@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-const port = process.env.port;
+const port = process.env.PORT;
 
 // Importing routes
 app.use("/api", userRoutes);
